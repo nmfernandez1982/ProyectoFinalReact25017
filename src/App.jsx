@@ -5,9 +5,13 @@ import Ofertas from './components/Ofertas';
 import Infaltables from './components/Infaltables';
 import Login from './components/Login'; 
 import Footer from './components/Footer'
+import { CartProvider } from './components/CartContext';
+import Carrito from './components/Carrito'; 
 
 function App() {
   return (
+        <CartProvider>
+
     <Router>
       <Header />
       <Routes>
@@ -15,9 +19,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/ofertas" element={<Ofertas />} />
         <Route path="/infaltables" element={<Infaltables />} />
+          <Route path="/carrito" element={<Carrito />} />
+
       </Routes>
       <Footer/>
     </Router>
+        </CartProvider>
+
   );
 }
 
