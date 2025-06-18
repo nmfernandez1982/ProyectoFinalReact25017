@@ -3,8 +3,16 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'font-awesome/css/font-awesome.min.css'; 
 
 const Footer = () => {
+  const footerStyle = {
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    zIndex: 1000,
+  };
+
   return (
-    <footer className="bg-dark text-white text-center py-4 mt-4">
+    <footer className="bg-dark text-white text-center py-4" style={footerStyle}>
       <Container>
         <Row>
           <Col md={6}>

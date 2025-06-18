@@ -9,7 +9,7 @@ const Carrito = () => {
     setCarrito(prev => prev.filter(producto => producto.id !== id));
   };
 
-  const total = carrito.reduce((acc, item) => acc + item.price * item.cantidad, 0);
+  const total = carrito.reduce((acc, item) => acc + Number(item.price) * item.cantidad, 0);
 
   if (carrito.length === 0) {
     return (
@@ -36,9 +36,9 @@ const Carrito = () => {
           {carrito.map((item) => (
             <tr key={item.id}>
               <td>{item.title}</td>
-              <td>${item.price.toFixed(2)}</td>
+              <td>${Number(item.price).toFixed(2)}</td>
               <td>{item.cantidad}</td>
-              <td>${(item.price * item.cantidad).toFixed(2)}</td>
+              <td>${(Number(item.price) * item.cantidad).toFixed(2)}</td>
               <td>
                 <Button
                   variant="danger"
