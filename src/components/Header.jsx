@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button, Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { CartContext } from './CartContext';
 
 const Header = () => {
+  const { carrito } = useContext(CartContext);
+  const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
-      <Container>       
+      <Container>
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
-            src="https://via.placeholder.com/40" 
+            src="https://via.placeholder.com/40"
             alt="Logo"
             className="d-inline-block align-top me-2"
           />
@@ -26,8 +30,13 @@ const Header = () => {
             <Button variant="outline-light" as={Link} to="/administracion" className="me-2">
               Administración
             </Button>
-            <Link to="/carrito" className="text-white">
+            <Link to="/carrito" className="text-white position-relative">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+              {totalItems > 0 && (
+                <Badge pill bg="danger" className="position-absolute top-0 start-100 translate-middle">
+                  {totalItems}
+                </Badge>
+              )}
             </Link>
           </div>
         </Nav>
